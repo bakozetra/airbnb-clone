@@ -1,24 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Stays from './stays.json'
 import Place from './Place';
-import  logo  from './logo.svg'
-import search from'./search.svg'
+import Header from './header'
+import IDs from './Id'
+
 console.log(Stays);
-export default function Houses () {
+export default function Houses () { 
 const Stay = Stays;
 console.log(Stays);
  return(
    <>
-      <a href="./"><img src ={logo}></img></a>
-     <label>
-      <button>Helsiki, Finland</button>
-      <button>Add guests  </button>
-      <button><img src={search}></img></button>
-     </label>
+     <Header/>
     <div className ="container">
-      {Stay.map((place , index) => {
+      {Stay.map((place) => {
       return( 
-         <Place key={index} place={place}></Place>
+        <>
+          <Place key={IDs} place={place}></Place>
+         </>
       )
      })}
      </div>

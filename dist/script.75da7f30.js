@@ -28427,7 +28427,26 @@ module.exports = [{
   "beds": 3,
   "photo": "https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80"
 }];
-},{}],"Place.js":[function(require,module,exports) {
+},{}],"star-svgrepo-com.svg":[function(require,module,exports) {
+module.exports = "/star-svgrepo-com.536e57fe.svg";
+},{}],"Id.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = generateId;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// utility to generate ids
+function generateId() {
+  const id = Date.now();
+  return id;
+}
+},{"react":"node_modules/react/index.js"}],"Place.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28437,36 +28456,77 @@ exports.default = Place;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _starSvgrepoCom = _interopRequireDefault(require("./star-svgrepo-com.svg"));
+
+var _Id = _interopRequireDefault(require("./Id"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Place({
   place
 }) {
-  return /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("img", {
+  return /*#__PURE__*/_react.default.createElement("li", {
+    key: _Id.default
+  }, /*#__PURE__*/_react.default.createElement("img", {
     src: place.photo
-  }), /*#__PURE__*/_react.default.createElement("p", null, place.city), /*#__PURE__*/_react.default.createElement("p", null, place.country));
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "content"
+  }, place.superHost && /*#__PURE__*/_react.default.createElement("button", null, "Super Host"), /*#__PURE__*/_react.default.createElement("p", null, place.type), /*#__PURE__*/_react.default.createElement("p", {
+    style: {
+      position: 'relative'
+    }
+  }, " ", /*#__PURE__*/_react.default.createElement("img", {
+    src: _starSvgrepoCom.default
+  }), place.rating)), /*#__PURE__*/_react.default.createElement("p", null, place.title));
 }
-},{"react":"node_modules/react/index.js"}],"logo.svg":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./star-svgrepo-com.svg":"star-svgrepo-com.svg","./Id":"Id.js"}],"logo.svg":[function(require,module,exports) {
 module.exports = "/logo.86ce68ea.svg";
 },{}],"search.svg":[function(require,module,exports) {
 module.exports = "/search.d2a88384.svg";
-},{}],"App.js":[function(require,module,exports) {
+},{}],"popup.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Houses;
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Popup = props => {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "popup-box"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "box"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "close-icon",
+    onClick: props.handleClose
+  }, "x"), props.content));
+};
+
+var _default = Popup;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _stays = _interopRequireDefault(require("./stays.json"));
 
-var _Place = _interopRequireDefault(require("./Place"));
-
 var _logo = _interopRequireDefault(require("./logo.svg"));
 
 var _search = _interopRequireDefault(require("./search.svg"));
+
+var _popup = _interopRequireDefault(require("./popup"));
+
+var _Id = _interopRequireDefault(require("./Id"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28474,27 +28534,68 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function Header() {
+  const [isOpen, setIsOpen] = (0, _react.useState)(false);
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const Stay = _stays.default;
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("a", {
+    href: "./"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _logo.default
+  })), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    value: "Click to Open Popup",
+    onClick: togglePopup
+  }, "Helsiki, Finland"), isOpen && /*#__PURE__*/_react.default.createElement(_popup.default, {
+    content: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, Stay.map(popup => {
+      return /*#__PURE__*/_react.default.createElement("p", {
+        key: _Id.default
+      }, popup.city);
+    })),
+    handleClose: togglePopup
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Add guests  "), /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _search.default
+  }))));
+}
+},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./logo.svg":"logo.svg","./search.svg":"search.svg","./popup":"popup.js","./Id":"Id.js"}],"App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Houses;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _stays = _interopRequireDefault(require("./stays.json"));
+
+var _Place = _interopRequireDefault(require("./Place"));
+
+var _header = _interopRequireDefault(require("./header"));
+
+var _Id = _interopRequireDefault(require("./Id"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 console.log(_stays.default);
 
 function Houses() {
   const Stay = _stays.default;
   console.log(_stays.default);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("a", {
-    href: "./"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _logo.default
-  })), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("button", null, "Helsiki, Finland"), /*#__PURE__*/_react.default.createElement("button", null, "Add guests  "), /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("img", {
-    src: _search.default
-  }))), /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, null), /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, Stay.map((place, index) => {
-    return /*#__PURE__*/_react.default.createElement(_Place.default, {
-      key: index,
+  }, Stay.map(place => {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Place.default, {
+      key: _Id.default,
       place: place
-    });
+    }));
   })));
 }
-},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./Place":"Place.js","./logo.svg":"logo.svg","./search.svg":"search.svg"}],"script.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./Place":"Place.js","./header":"header.js","./Id":"Id.js"}],"script.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28534,7 +28635,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58450" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53960" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,5 +1,49 @@
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+ 
+.box {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+ 
+.close-icon {
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
+
+
 li {
   list-style: none;
+  padding-bottom: 2rem;
+}
+body , p {
+  margin: 0;
 }
 li img {
   width: 100%;
@@ -9,6 +53,21 @@ li img {
 button {
   outline: none;
   background-color: white;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+li button {
+  width: 100px;
+  height: 28px;
+  border-radius: 12px;
+  border: 1px solid rgba(79, 79, 79, 1);
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+label button {
   width: 297px;
   height: 55px;
   border: 1px solid rgba(242, 242, 242, 1);
@@ -28,12 +87,20 @@ label button:nth-of-type(2) {
 label button:nth-of-type(3) {
   border-radius: 0px 16px 16px 0px;
 }
-button img {
-  fill: blue;
+label button img {
   width : 24px ;
   height: 24px;
-
 }
+p img  {
+  width : 15.75px ;
+  height: 15.88px;
+  position: absolute;
+  left: 1r;
+  right: 2rem;
+  top: 0.025rem;
+}
+
+
 fieldset {
   border-radius: 16px;
   width: 297px;
@@ -46,13 +113,18 @@ fieldset {
   display: grid;
   grid-template-columns: repeat(3 , 1fr);
   column-gap: 2rem;
- 
 }
 li img {
   max-width: 100%;
   width: 50vw;
   height: calc(40vw * 935 /1401);
   border-radius: 10px;
+}
+p img  {
+  bottom: 0;
+  right: 2rem;
+  width : 15.75px ;
+  height: 15.88px;
 }
 }
 
