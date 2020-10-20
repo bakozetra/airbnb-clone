@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function Place ({place}) {
     return (
-      <div>
-        <p> <img src = {place.photo}></img></p>
+      <li>
+        <img src = {place.photo}></img>
         <p>{place.city}</p>
         <p>{place.country}</p>
-      </div>
+      </li>
     )
 }

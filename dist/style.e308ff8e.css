@@ -1,14 +1,59 @@
-#root{
+li {
+  list-style: none;
+}
+li img {
+  width: 100%;
+  height: calc(100vw * 935 /1401);
+  border-radius: 10px;
+}
+button {
+  outline: none;
+  background-color: white;
+  width: 297px;
+  height: 55px;
+  border: 1px solid rgba(242, 242, 242, 1);
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.1);
+  ;
+}
+label {
+  display: flex;
+  padding-bottom: 2rem;
+}
+label button:nth-of-type(1) {
+  border-radius: 16px 0 0 16px;
+}
+label button:nth-of-type(2) {
+  color: #BDBDBD;
+}
+label button:nth-of-type(3) {
+  border-radius: 0px 16px 16px 0px;
+}
+button img {
+  fill: blue;
+  width : 24px ;
+  height: 24px;
+
+}
+fieldset {
+  border-radius: 16px;
+  width: 297px;
+  text-align: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+@media(min-width : 375px) {
+.container{
   display: grid;
   grid-template-columns: repeat(3 , 1fr);
   column-gap: 2rem;
  
 }
-img {
+li img {
   max-width: 100%;
   width: 50vw;
-  height: calc(50vw * 935 /1401);
+  height: calc(40vw * 935 /1401);
   border-radius: 10px;
+}
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

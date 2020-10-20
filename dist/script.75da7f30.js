@@ -28442,11 +28442,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Place({
   place
 }) {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, " ", /*#__PURE__*/_react.default.createElement("img", {
+  return /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("img", {
     src: place.photo
-  })), /*#__PURE__*/_react.default.createElement("p", null, place.city), /*#__PURE__*/_react.default.createElement("p", null, place.country));
+  }), /*#__PURE__*/_react.default.createElement("p", null, place.city), /*#__PURE__*/_react.default.createElement("p", null, place.country));
 }
-},{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"logo.svg":[function(require,module,exports) {
+module.exports = "/logo.86ce68ea.svg";
+},{}],"search.svg":[function(require,module,exports) {
+module.exports = "/search.d2a88384.svg";
+},{}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28460,6 +28464,10 @@ var _stays = _interopRequireDefault(require("./stays.json"));
 
 var _Place = _interopRequireDefault(require("./Place"));
 
+var _logo = _interopRequireDefault(require("./logo.svg"));
+
+var _search = _interopRequireDefault(require("./search.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -28471,14 +28479,22 @@ console.log(_stays.default);
 function Houses() {
   const Stay = _stays.default;
   console.log(_stays.default);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, Stay.map((place, index) => {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("a", {
+    href: "./"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _logo.default
+  })), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("button", null, "Helsiki, Finland"), /*#__PURE__*/_react.default.createElement("button", null, "Add guests  "), /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("img", {
+    src: _search.default
+  }))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "container"
+  }, Stay.map((place, index) => {
     return /*#__PURE__*/_react.default.createElement(_Place.default, {
       key: index,
       place: place
     });
-  }));
+  })));
 }
-},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./Place":"Place.js"}],"script.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./Place":"Place.js","./logo.svg":"logo.svg","./search.svg":"search.svg"}],"script.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
