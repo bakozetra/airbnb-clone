@@ -28518,8 +28518,6 @@ exports.default = Header;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _stays = _interopRequireDefault(require("./stays.json"));
-
 var _logo = _interopRequireDefault(require("./logo.svg"));
 
 var _search = _interopRequireDefault(require("./search.svg"));
@@ -28554,19 +28552,24 @@ function Header(props) {
       htmlFor: "pet-select"
     }, "Location ", /*#__PURE__*/_react.default.createElement("br", null)), /*#__PURE__*/_react.default.createElement("select", {
       name: "pets",
-      id: "pet-select"
-    }, props.places.map(prop => {
-      return /*#__PURE__*/_react.default.createElement("option", {
-        key: prop.places.id,
-        value: ""
-      }, prop.city);
-    })), /*#__PURE__*/_react.default.createElement("button", null, "Guest ", /*#__PURE__*/_react.default.createElement("br", null), "Add guests"), /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("img", {
+      id: "pet-select",
+      onClick: props.handleChange,
+      value: props.e.target.value
+    }, /*#__PURE__*/_react.default.createElement("option", {
+      value: "Helsinki Finland"
+    }, "Helsinki Finland"), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Turku Finland"
+    }, "Turku Finland "), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Oulu Finland"
+    }, "Oulu Finland "), /*#__PURE__*/_react.default.createElement("option", {
+      value: "Vaasa Finland"
+    }, "Vaasa Finland ")), /*#__PURE__*/_react.default.createElement("button", null, "Guest ", /*#__PURE__*/_react.default.createElement("br", null), "Add guests"), /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("img", {
       src: _search.default
     }))),
     handleClose: togglePopup
   }));
 }
-},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./logo.svg":"logo.svg","./search.svg":"search.svg","./popup":"popup.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./logo.svg":"logo.svg","./search.svg":"search.svg","./popup":"popup.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28574,7 +28577,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Houses;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _stays = _interopRequireDefault(require("./stays.json"));
 
@@ -28584,28 +28587,37 @@ var _header = _interopRequireDefault(require("./header"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 console.log(_stays.default);
 
 function Houses() {
-  const Stay = _stays.default;
-  console.log(_stays.default); // creating an id 
+  let [stay, setStay] = (0, _react.useState)(_stays.default);
+  let [city, setCity] = (0, _react.useState)(_stays.default); // creating an id 
 
-  for (var i = 0; i < Stay.length; i++) {
-    Stay[i].id = i;
+  for (var i = 0; i < stay.length; i++) {
+    stay[i].id = i;
   }
 
+  const handleChange = e => {
+    stay = stay.filter(name => name.city.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase()));
+    console.log(stay); // setStay(e.target.value);
+
+    console.log('djhgdfjkvhsdk.');
+  };
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, {
-    places: Stay
+    places: stay,
+    handleChange: handleChange
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, Stay.map(place => {
-    return /*#__PURE__*/_react.default.createElement(_Place.default, _extends({
-      key: place.id
-    }, Stay, {
+  }, stay.map(place => {
+    return /*#__PURE__*/_react.default.createElement(_Place.default, {
+      key: place.id,
       place: place
-    }));
+    });
   })));
 }
 },{"react":"node_modules/react/index.js","./stays.json":"stays.json","./Place":"Place.js","./header":"header.js"}],"script.js":[function(require,module,exports) {

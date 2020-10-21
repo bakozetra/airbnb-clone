@@ -1,25 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Stays from './stays.json'
 import Place from './Place';
 import Header from './header'
 
 console.log(Stays);
 export default function Houses () { 
-const Stay = Stays;
-console.log(Stays);
-
+  let [stay , setStay] = useState(Stays);
+  let [city , setCity] = useState(Stays);
 // creating an id 
- for (var i=0 ; i<Stay.length ; i++) {
-     Stay[i].id = i;
+ for (var i=0 ; i<stay.length ; i++) {
+     stay[i].id = i ;
  }
 
+ const handleChange = (e) => { 
+  stay = stay.filter(name => name.city.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase()));
+  console.log(stay);
+  // setStay(e.target.value);
+  
+   console.log('djhgdfjkvhsdk.')
+ }
+ 
  return(
    <>
-     <Header places={Stay} />
+     <Header places={stay} handleChange ={handleChange}/>
     <div className ="container">
-      {Stay.map((place) => {
+      {stay.map(place => {
       return( 
-          <Place key={place.id} {...Stay} place={place}></Place>
+          <Place key={place.id} place={place}></Place>
       )
      })}
      </div>

@@ -1,5 +1,4 @@
 import React, { useState }  from 'react'
-import Stays from './stays.json'
 import  logo  from './logo.svg'
 import search from'./search.svg'
 import Popup from './popup'
@@ -26,11 +25,12 @@ export default function Header (props) {
                   content= {
                 <>
                     <label htmlFor ="pet-select">Location <br/></label>
-                    <select name="pets" id="pet-select">
-                      {props.places.map( prop => {
-                        return(<option key={prop.places.id} value="">{prop.city}</option>)
-                      })}
-                    </select>
+                        <select name="pets" id="pet-select" onClick={props.handleChange} value={props.e.target.value}>
+                           <option value="Helsinki Finland">Helsinki Finland</option>
+                           <option  value="Turku Finland">Turku Finland </option>
+                           <option  value="Oulu Finland">Oulu Finland </option>
+                           <option  value="Vaasa Finland">Vaasa Finland </option>
+                        </select>
                     <button>Guest <br/>Add guests</button>
                     <button><img src={search}>
                     </img></button>
