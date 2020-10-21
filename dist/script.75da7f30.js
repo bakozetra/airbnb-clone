@@ -28500,7 +28500,7 @@ const Popup = props => {
     className: "popup-box"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "box"
-  }, /*#__PURE__*/_react.default.createElement("span", {
+  }, /*#__PURE__*/_react.default.createElement("button", {
     className: "close-icon",
     onClick: props.handleClose
   }, "x"), props.content));
@@ -28526,22 +28526,19 @@ var _search = _interopRequireDefault(require("./search.svg"));
 
 var _popup = _interopRequireDefault(require("./popup"));
 
-var _Id = _interopRequireDefault(require("./Id"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function Header() {
+function Header(props) {
   const [isOpen, setIsOpen] = (0, _react.useState)(false);
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
-  const Stay = _stays.default;
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("a", {
     href: "./"
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -28550,18 +28547,26 @@ function Header() {
     type: "button",
     value: "Click to Open Popup",
     onClick: togglePopup
-  }, "Helsiki, Finland"), isOpen && /*#__PURE__*/_react.default.createElement(_popup.default, {
-    content: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, Stay.map(popup => {
-      return /*#__PURE__*/_react.default.createElement("p", {
-        key: _Id.default
-      }, popup.city);
-    })),
-    handleClose: togglePopup
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Add guests  "), /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("img", {
+  }, "Helsiki, Finland"), /*#__PURE__*/_react.default.createElement("button", null, "Add guests  "), /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("img", {
     src: _search.default
-  }))));
+  }))), isOpen && /*#__PURE__*/_react.default.createElement(_popup.default, {
+    content: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("label", {
+      htmlFor: "pet-select"
+    }, "Location ", /*#__PURE__*/_react.default.createElement("br", null)), /*#__PURE__*/_react.default.createElement("select", {
+      name: "pets",
+      id: "pet-select"
+    }, props.places.map(prop => {
+      return /*#__PURE__*/_react.default.createElement("option", {
+        key: prop.places.id,
+        value: ""
+      }, prop.city);
+    })), /*#__PURE__*/_react.default.createElement("button", null, "Guest ", /*#__PURE__*/_react.default.createElement("br", null), "Add guests"), /*#__PURE__*/_react.default.createElement("button", null, /*#__PURE__*/_react.default.createElement("img", {
+      src: _search.default
+    }))),
+    handleClose: togglePopup
+  }));
 }
-},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./logo.svg":"logo.svg","./search.svg":"search.svg","./popup":"popup.js","./Id":"Id.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./logo.svg":"logo.svg","./search.svg":"search.svg","./popup":"popup.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28577,25 +28582,33 @@ var _Place = _interopRequireDefault(require("./Place"));
 
 var _header = _interopRequireDefault(require("./header"));
 
-var _Id = _interopRequireDefault(require("./Id"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 console.log(_stays.default);
 
 function Houses() {
   const Stay = _stays.default;
-  console.log(_stays.default);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, null), /*#__PURE__*/_react.default.createElement("div", {
+  console.log(_stays.default); // creating an id 
+
+  for (var i = 0; i < Stay.length; i++) {
+    Stay[i].id = i;
+  }
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, {
+    places: Stay
+  }), /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, Stay.map(place => {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Place.default, {
-      key: _Id.default,
+    return /*#__PURE__*/_react.default.createElement(_Place.default, _extends({
+      key: place.id
+    }, Stay, {
       place: place
     }));
   })));
 }
-},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./Place":"Place.js","./header":"header.js","./Id":"Id.js"}],"script.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./stays.json":"stays.json","./Place":"Place.js","./header":"header.js"}],"script.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28635,7 +28648,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53960" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57440" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
